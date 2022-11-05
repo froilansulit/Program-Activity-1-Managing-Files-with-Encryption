@@ -13,7 +13,7 @@
                 <form action="<?php base_url('files/add') ?>" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>File Upload: <small class="text-muted font-weight-bold"> (Choose and upload a file that's not more than 5MB)</small></label>
-                        <input type="file" name="product_image" class="form-control-file">
+                        <input type="file" name="file_data" class="form-control-file">
                         <small class="text-danger"><?php if (isset($imageError)) {
                                                         echo $imageError;
                                                     } ?></small>

@@ -31,40 +31,40 @@
             $this->form_validation->set_rules('encryption_key', 'Encryption Key', 'trim|required');
             $this->form_validation->set_rules('confirm_encryption', 'Confirm Encryption Key', 'trim|required|matches[encryption_key]');
 
-            // $originalFilename = $_FILES['product_image']['name'];
-            // $newName = time()."".str_replace(' ', '-', $originalFilename);
-            // $config = 
-            // [
-            //     'upload_path' => './images/',
-            //     'allowed_types' => 'jpg|png',
-            //     'file_name' => $newName,
-            //     'max_size' => 5000,
-            // ];
+            $originalFilename = $_FILES['file_data']['name'];
+            $newName = time()."".str_replace(' ', '-', $originalFilename);
+            $config = 
+            [
+                'upload_path' => './file_storage/',
+                'allowed_types' => 'jpg|png|txt|pdf',
+                'file_name' => $newName,
+                'max_size' => 5000,
+            ];
 
-            // $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
             
             if ($this->form_validation->run())
             {
-                // if ( ! $this->upload->do_upload('product_image'))
-                // {
-                //     $imageError = array('imageError' => $this->upload->display_errors());
-                //     $this->load->view('partials/header', $this->data);
-                //     $this->load->view('products/create', $imageError);
-                //     $this->load->view('partials/footer');
-                // }
-                // else
-                // {
-                //     $productFilename = $this->upload->data('file_name');
-                //     $data = [
-                //         'name' => $this->input->post('name'),
-                //         'description' => $this->input->post('description'),
-                //         'price' => $this->input->post('price'),
-                //         'product_image' => $productFilename
-                //     ];
-                //     $result = $this->product->insertProduct($data);
-                //     $this->session->set_flashdata('status', 'Product Inserted Successfully');
-                //     redirect(base_url('products/add'));
-                // }
+                if ( ! $this->upload->do_upload('product_image'))
+                {
+                    $imageError = array('imageError' => $this->upload->display_errors());
+                    $this->load->view('partials/header', $this->data);
+                    $this->load->view('products/create', $imageError);
+                    $this->load->view('partials/footer');
+                }
+                else
+                {
+                    $productFilename = $this->upload->data('file_name');
+                    $data = [
+                        'name' => $this->input->post('name'),
+                        'description' => $this->input->post('description'),
+                        'price' => $this->input->post('price'),
+                        'product_image' => $productFilename
+                    ];
+                    $result = $this->product->insertProduct($data);
+                    $this->session->set_flashdata('status', 'Product Inserted Successfully');
+                    redirect(base_url('products/add'));
+                }
             }
             else { $this->new(); }
         }
