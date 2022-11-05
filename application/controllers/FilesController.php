@@ -73,7 +73,6 @@
 
             $result = $this->files->verifyFile($data);
             // var_dump($result);
-
             $this->load->view('partials/header', $this->data);
             $this->load->view('file_exlorer/access', $result);
             $this->load->view('partials/footer');
@@ -104,8 +103,6 @@
             else { 
                 $this->accessFile($this->input->post('access_id')); 
             }
-
-        //    echo html_escape($this->input->post('access_id'));
         }
 
         public function show($id) {
