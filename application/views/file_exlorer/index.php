@@ -7,7 +7,7 @@
         <?php endif ?>
         <div class="card">
             <div class="card-header">
-                <h4>File Exlorer <a href="<?= base_url('files/add') ?>" class="btn btn-dark px-5 float-right">Add New File</a></h4>
+                <h4>File Exlorer <a href="<?= base_url('files/add') ?>" class="btn btn-dark px-3 float-right"><i class="bi bi-file-earmark-plus"></i> Add New File</a></h4>
             </div>
             <div class="card-body text-center">
                 <table class="table table-bordered table table-striped table-responsive-lg">
@@ -22,7 +22,7 @@
                             <tr>
                                 <th scope="row"><?= $item->filename; ?></th>
                                 <td>
-                                     <a href="<?= base_url('files/access/'.$item->id) ?>" class="btn btn-success">Access</a>
+                                     <a href="<?= base_url('files/access/'.$item->id) ?>" class="btn btn-success"><i class="bi bi-key"></i> Access</a>
                                      
                                     <!-- <form action="<?php base_url('files/access') ?>" method="post">
                                         <input type="hidden" name="filename" value="<?= $item->filename ?>">

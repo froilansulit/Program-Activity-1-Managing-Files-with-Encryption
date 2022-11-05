@@ -23,10 +23,5 @@
 
             return $this->db->query("SELECT * FROM file_explorer WHERE id = ? AND encryption_key = ?", array($id, $encryptionKey))->row_array();
         }
-
-        // function lgn_email($email, $password)
-        // {
-        //     return $this->db->query("SELECT * FROM authentication WHERE email = ? AND password = ?", array($email, $password))->row_array();
-        // }
     }
 ?>

@@ -13,6 +13,7 @@
         }
 
         public function index() {
+            $this->session->sess_destroy();
             $this->load->view('partials/header', $this->data);
             $data['files'] = $this->files->getFiles();
             $this->load->view('file_exlorer/index', $data);
@@ -71,7 +72,7 @@
             // $data['id'] = $id;
 
             $result = $this->files->verifyFile($data);
-            var_dump($result);
+            // var_dump($result);
 
             $this->load->view('partials/header', $this->data);
             $this->load->view('file_exlorer/access', $result);
@@ -86,12 +87,14 @@
                 $encryptionKey = html_escape($this->input->post('verify_key'));
                 $id = html_escape($this->input->post('access_id'));
                 $result = $this->files->verifyKey($id, $encryptionKey);
-                var_dump($result);
+                // var_dump($result);
 
                 if($result != NULL) {
                     // $this->session->set_flashdata('success_info', "Information updated successfully!");
                     // redirect('/users/edit');
                     echo "Hello";
+                    $this->session->set_userdata('access_granted', TRUE);
+                    redirect(base_url('files/show/'.$id));
                 }
                 else {
                     $this->session->set_flashdata('error', 'Invalid Encryption Key, Please Try again.');
@@ -103,6 +106,20 @@
             }
 
         //    echo html_escape($this->input->post('access_id'));
+        }
+
+        public function show($id) {
+
+            $isGranted = $this->session->userdata('access_granted');
+            if ($isGranted != TRUE) {
+                redirect(base_url('files'));
+            }
+            else {
+                $result = $this->files->verifyFile($id);
+                $this->load->view('partials/header', $this->data);
+                $this->load->view('file_exlorer/show', $result);
+                $this->load->view('partials/footer');
+            }
         }
     }
 ?>

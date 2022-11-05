@@ -17,3 +17,4 @@ $route['files/add']['POST'] = 'FilesController/create';
 $route['files']['GET'] = 'FilesController/index';
 $route['files/access/(:any)'] = 'FilesController/accessFile/$1';
 $route['files/verify']['POST'] = 'FilesController/verify';
+$route['files/show/(:any)']['GET'] = 'FilesController/show/$1';
