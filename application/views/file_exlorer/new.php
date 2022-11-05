@@ -11,12 +11,6 @@
             </div>
             <div class="card-body">
                 <form action="<?php base_url('files/add') ?>" method="POST" enctype="multipart/form-data">
-                    <label>Upload File:</label>
-                    <div class="custom-file">
-                        <input type="file" name="file_data" class="custom-file-input" lang="es">
-                        <label class="custom-file-label text-muted" for="customFileLang">Choose and upload a file that's not more than 5MB</label>
-                        <small class="text-danger"><?= (isset($fileError)) ? $fileError :"";?></small>
-                    </div>
                     <div class="form-group">
                         <label>Encryption key:</label>
                         <input type="text" name="encryption_key" class="form-control" placeholder="Enter Encryption Key" value="<?= (isset($_POST['encryption_key'])) ? $_POST['encryption_key'] : "" ?>">
@@ -26,6 +20,20 @@
                         <label>Confirm Encryption key:</label>
                         <input type="text" name="confirm_encryption" class="form-control" placeholder="Repeat Encryption Key" value="<?= (isset($_POST['confirm_encryption'])) ? $_POST['confirm_encryption'] : "" ?>">
                         <small class="text-danger"><?= form_error('confirm_encryption') ?></small>
+                    </div>
+
+                    <!-- <label>Upload File:</label>
+                    <div class="custom-file">
+                        <input type="file" name="file_data" class="custom-file-input" lang="es">
+                        <label class="custom-file-label text-muted" for="customFileLang">Choose and upload a file that's not more than 2MB</label>
+                        <small class="text-danger"><?= (isset($fileError)) ? $fileError :"";?></small>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label>Upload File: <small class="text-muted font-weight-bold">Choose and upload a file that's not more than 2MB</small></label>
+                        <input type="file" name="file_data" class="form-control-file" accept="image/*, .txt, .pdf">
+                        <small class="text-danger"><?= (isset($fileError)) ? $fileError :"";?></small>
+                        
                     </div>
 
                     <div class="form-group float-right mt-4">

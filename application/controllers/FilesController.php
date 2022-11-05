@@ -8,7 +8,7 @@
             $this->load->library('form_validation');
             $this->load->helper('form');
             $this->data['title'] = "File Exlorer";
-            $this->load->model('ProductModel');
+            $this->load->model('FilesModel');
             $this->files = new FilesModel;
         }
 
@@ -38,7 +38,7 @@
                 'upload_path' => './file_storage/',
                 'allowed_types' => 'jpg|png|txt|pdf',
                 'file_name' => $newName,
-                'max_size' => 5000,
+                'max_size' => 2000,
             ];
 
             $this->load->library('upload', $config);
@@ -49,7 +49,7 @@
                 {
                     $fileError = array('fileError' => $this->upload->display_errors());
                     $this->load->view('partials/header', $this->data);
-                    $this->load->view('file_exlorer/create', $fileError);
+                    $this->load->view('file_exlorer/new', $fileError);
                     $this->load->view('partials/footer');
                 }
                 else
