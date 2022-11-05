@@ -23,12 +23,6 @@
                                 <th scope="row"><?= $item->filename; ?></th>
                                 <td>
                                      <a href="<?= base_url('files/access/'.$item->id) ?>" class="btn btn-success"><i class="bi bi-key"></i> Access</a>
-                                     
-                                    <!-- <form action="<?php base_url('files/access') ?>" method="post">
-                                        <input type="hidden" name="filename" value="<?= $item->filename ?>">
-                                        <input type="submit" value="Access" class="btn btn-success">
-                                    </form> -->
-                                    <!-- <a href="<?= base_url('file_storage/' . $item->filename) ?>" class="btn btn-success" download>Access</a> -->
                                 </td>
                             </tr>
                         <?php endforeach; ?>

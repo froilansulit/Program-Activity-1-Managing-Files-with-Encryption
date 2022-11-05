@@ -14,7 +14,7 @@
                 <form action="<?= base_url('files/verify') ?>" method="post">
                     <input type="hidden" name="access_id" value="<?= $id; ?>">
                     <div class="form-group">
-                        <input type="text" name="verify_key" class="form-control" placeholder="Please Enter Encryption Key">
+                        <input type="password" name="verify_key" class="form-control" placeholder="Please Enter Encryption Key">
                         <small class="text-danger font-weight-bold"><?= form_error('verify_key') ?></small>
                     </div>
                     <div class="form-group pt-2 float-right">
