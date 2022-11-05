@@ -9,7 +9,7 @@
             $this->load->helper('form');
             $this->data['title'] = "File Exlorer";
             $this->load->model('ProductModel');
-            $this->product = new ProductModel;
+            $this->files = new FilesModel;
         }
 
         public function index() {
@@ -56,14 +56,12 @@
                 {
                     $fileName = $this->upload->data('file_name');
                     $data = [
-                        'name' => $this->input->post('name'),
-                        'description' => $this->input->post('description'),
-                        'price' => $this->input->post('price'),
-                        'product_image' => $fileName
+                        'filename' => $fileName,
+                        'encryption_key' => html_escape($this->input->post('encryption_key'))
                     ];
-                    $result = $this->product->insertProduct($data);
-                    $this->session->set_flashdata('status', 'Product Inserted Successfully');
-                    redirect(base_url('products/add'));
+                    $result = $this->files->insertFiles($data);
+                    $this->session->set_flashdata('status', 'Files Inserted Successfully');
+                    redirect(base_url('files/add'));
                 }
             }
             else { $this->new(); }

@@ -11,29 +11,21 @@
             </div>
             <div class="card-body">
                 <form action="<?php base_url('files/add') ?>" method="POST" enctype="multipart/form-data">
-                    <!-- <div class="form-group">
-                       
-                        <input type="file" class="form-control-file">
-                        
-                    </div> -->
                     <label>Upload File:</label>
                     <div class="custom-file">
-                   
                         <input type="file" name="file_data" class="custom-file-input" lang="es">
                         <label class="custom-file-label text-muted" for="customFileLang">Choose and upload a file that's not more than 5MB</label>
-                        <small class="text-danger"><?php if (isset($fileError)) {
-                                                        echo $fileError;
-                                                    } ?></small>
+                        <small class="text-danger"><?= (isset($fileError)) ? $fileError :"";?></small>
                     </div>
                     <div class="form-group">
                         <label>Encryption key:</label>
                         <input type="text" name="encryption_key" class="form-control" placeholder="Enter Encryption Key" value="<?= (isset($_POST['encryption_key'])) ? $_POST['encryption_key'] : "" ?>">
-                        <small class="text-danger"><?php echo form_error('encryption_key') ?></small>
+                        <small class="text-danger"><?= form_error('encryption_key') ?></small>
                     </div>
                     <div class="form-group">
                         <label>Confirm Encryption key:</label>
                         <input type="text" name="confirm_encryption" class="form-control" placeholder="Repeat Encryption Key" value="<?= (isset($_POST['confirm_encryption'])) ? $_POST['confirm_encryption'] : "" ?>">
-                        <small class="text-danger"><?php echo form_error('confirm_encryption') ?></small>
+                        <small class="text-danger"><?= form_error('confirm_encryption') ?></small>
                     </div>
 
                     <div class="form-group float-right mt-4">
