@@ -2,14 +2,31 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
     class FilesModel extends CI_Model {
 
-        public function insertFiles($data) 
+        function insertFiles($data) 
         {
             return $this->db->insert('file_explorer', $data);
         }
 
-        // public function getProducts() {
-        //     $query = $this->db->get('products');
-        //     return $query->result();
+        function getFiles() {
+            $query = $this->db->get('file_explorer');
+            return $query->result();
+        }
+
+        function verifyFile($data)
+        {
+            return $this->db->query("SELECT * FROM file_explorer WHERE id = ?", array($data))->row_array();
+        }
+
+        function verifyKey($id, $encryptionKey)
+        {
+            // return $this->db->query("SELECT * FROM file_explorer WHERE id = ?", array($data))->row_array();
+
+            return $this->db->query("SELECT * FROM file_explorer WHERE id = ? AND encryption_key = ?", array($id, $encryptionKey))->row_array();
+        }
+
+        // function lgn_email($email, $password)
+        // {
+        //     return $this->db->query("SELECT * FROM authentication WHERE email = ? AND password = ?", array($email, $password))->row_array();
         // }
     }
 ?>

@@ -14,8 +14,8 @@
 
         public function index() {
             $this->load->view('partials/header', $this->data);
-            $data['products'] = $this->product->getProducts();
-            $this->load->view('products/index', $data);
+            $data['files'] = $this->files->getFiles();
+            $this->load->view('file_exlorer/index', $data);
             $this->load->view('partials/footer');
         }
 
@@ -61,10 +61,48 @@
                     ];
                     $result = $this->files->insertFiles($data);
                     $this->session->set_flashdata('status', 'Files Inserted Successfully');
-                    redirect(base_url('files/add'));
+                    redirect(base_url('files'));
                 }
             }
             else { $this->new(); }
+        }
+
+        public function accessFile($data) {
+            // $data['id'] = $id;
+
+            $result = $this->files->verifyFile($data);
+            var_dump($result);
+
+            $this->load->view('partials/header', $this->data);
+            $this->load->view('file_exlorer/access', $result);
+            $this->load->view('partials/footer');
+        }
+
+        public function verify() {
+            $this->form_validation->set_rules('verify_key', 'Encryption Key', 'trim|required|alpha_numeric');
+
+            if ($this->form_validation->run())
+            {
+                $encryptionKey = html_escape($this->input->post('verify_key'));
+                $id = html_escape($this->input->post('access_id'));
+                $result = $this->files->verifyKey($id, $encryptionKey);
+                var_dump($result);
+
+                if($result != NULL) {
+                    // $this->session->set_flashdata('success_info', "Information updated successfully!");
+                    // redirect('/users/edit');
+                    echo "Hello";
+                }
+                else {
+                    $this->session->set_flashdata('error', 'Invalid Encryption Key, Please Try again.');
+                    redirect(base_url('files/access/'.$id));
+                }
+            }
+            else { 
+                $this->accessFile($this->input->post('access_id')); 
+            }
+
+        //    echo html_escape($this->input->post('access_id'));
         }
     }
 ?>

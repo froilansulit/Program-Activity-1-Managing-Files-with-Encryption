@@ -12,4 +12,8 @@ $route['products']['GET'] = 'ProductController/index';
 
 // file activity
 $route['files/add']['GET'] = 'FilesController/new';
+
 $route['files/add']['POST'] = 'FilesController/create';
+$route['files']['GET'] = 'FilesController/index';
+$route['files/access/(:any)'] = 'FilesController/accessFile/$1';
+$route['files/verify']['POST'] = 'FilesController/verify';
