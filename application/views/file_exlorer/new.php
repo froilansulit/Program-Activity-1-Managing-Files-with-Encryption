@@ -11,11 +11,18 @@
             </div>
             <div class="card-body">
                 <form action="<?php base_url('files/add') ?>" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>File Upload: <small class="text-muted font-weight-bold"> (Choose and upload a file that's not more than 5MB)</small></label>
-                        <input type="file" name="file_data" class="form-control-file">
-                        <small class="text-danger"><?php if (isset($imageError)) {
-                                                        echo $imageError;
+                    <!-- <div class="form-group">
+                       
+                        <input type="file" class="form-control-file">
+                        
+                    </div> -->
+                    <label>Upload File:</label>
+                    <div class="custom-file">
+                   
+                        <input type="file" name="file_data" class="custom-file-input" lang="es">
+                        <label class="custom-file-label text-muted" for="customFileLang">Choose and upload a file that's not more than 5MB</label>
+                        <small class="text-danger"><?php if (isset($fileError)) {
+                                                        echo $fileError;
                                                     } ?></small>
                     </div>
                     <div class="form-group">

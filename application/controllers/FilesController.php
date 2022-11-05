@@ -28,8 +28,8 @@
 
         public function create() {
 
-            $this->form_validation->set_rules('encryption_key', 'Encryption Key', 'trim|required');
-            $this->form_validation->set_rules('confirm_encryption', 'Confirm Encryption Key', 'trim|required|matches[encryption_key]');
+            $this->form_validation->set_rules('encryption_key', 'Encryption Key', 'trim|required|alpha_numeric');
+            $this->form_validation->set_rules('confirm_encryption', 'Confirm Encryption Key', 'trim|required|alpha_numeric|matches[encryption_key]');
 
             $originalFilename = $_FILES['file_data']['name'];
             $newName = time()."".str_replace(' ', '-', $originalFilename);
@@ -45,21 +45,21 @@
             
             if ($this->form_validation->run())
             {
-                if ( ! $this->upload->do_upload('product_image'))
+                if ( ! $this->upload->do_upload('file_data'))
                 {
-                    $imageError = array('imageError' => $this->upload->display_errors());
+                    $fileError = array('fileError' => $this->upload->display_errors());
                     $this->load->view('partials/header', $this->data);
-                    $this->load->view('products/create', $imageError);
+                    $this->load->view('file_exlorer/create', $fileError);
                     $this->load->view('partials/footer');
                 }
                 else
                 {
-                    $productFilename = $this->upload->data('file_name');
+                    $fileName = $this->upload->data('file_name');
                     $data = [
                         'name' => $this->input->post('name'),
                         'description' => $this->input->post('description'),
                         'price' => $this->input->post('price'),
-                        'product_image' => $productFilename
+                        'product_image' => $fileName
                     ];
                     $result = $this->product->insertProduct($data);
                     $this->session->set_flashdata('status', 'Product Inserted Successfully');
