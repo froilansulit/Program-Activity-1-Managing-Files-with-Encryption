@@ -68,14 +68,16 @@
             else { $this->new(); }
         }
 
-        public function accessFile($data) {
+        public function accessFile($data) 
+        {
             $result = $this->files->verifyFile($data);
             $this->load->view('partials/header', $this->data);
             $this->load->view('file_exlorer/access', $result);
             $this->load->view('partials/footer');
         }
 
-        public function verify() {
+        public function verify()
+        {
             $this->form_validation->set_rules('verify_key', 'Encryption Key', 'trim|required|alpha_numeric');
 
             if ($this->form_validation->run())
@@ -83,12 +85,11 @@
                 $encryptionKey = html_escape($this->input->post('verify_key'));
                 $id = html_escape($this->input->post('access_id'));
                 $result = $this->files->verifyKey($id, $encryptionKey);
-                // var_dump($result);
 
                 if($result != NULL) {
                     // $this->session->set_flashdata('success_info', "Information updated successfully!");
                     // redirect('/users/edit');
-                    echo "Hello";
+                    // echo "Hello";
                     $this->session->set_userdata('access_granted', TRUE);
                     redirect(base_url('files/show/'.$id));
                 }
@@ -102,7 +103,8 @@
             }
         }
 
-        public function show($id) {
+        public function show($id) 
+        {
 
             $isGranted = $this->session->userdata('access_granted');
             if ($isGranted != TRUE) {
