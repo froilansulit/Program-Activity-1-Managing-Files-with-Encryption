@@ -69,10 +69,7 @@
         }
 
         public function accessFile($data) {
-            // $data['id'] = $id;
-
             $result = $this->files->verifyFile($data);
-            // var_dump($result);
             $this->load->view('partials/header', $this->data);
             $this->load->view('file_exlorer/access', $result);
             $this->load->view('partials/footer');
