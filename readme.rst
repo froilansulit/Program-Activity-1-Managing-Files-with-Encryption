@@ -1,4 +1,15 @@
 ###################
+About this project
+###################
+I created an application that can manage files with security code before opening the file.
+
+###################
+Technologies used
+###################
+
+HTML, CSS, Bootstrap, PHP, Code Igniter and MySQL.
+
+###################
 What is CodeIgniter
 ###################
 

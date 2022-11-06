@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://code.me/';
+// $config['base_url'] = 'https://2afe-136-158-8-192.ap.ngrok.io/';
 
 /*
 |--------------------------------------------------------------------------

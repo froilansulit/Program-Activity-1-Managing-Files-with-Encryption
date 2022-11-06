@@ -17,9 +17,15 @@
                         <input type="password" name="verify_key" class="form-control" placeholder="Please Enter Encryption Key">
                         <small class="text-danger font-weight-bold"><?= form_error('verify_key') ?></small>
                     </div>
-                    <div class="form-group pt-2 float-right">
-                        <input type="submit" value="Verify" class="btn btn-dark px-5">
-                        <a href="<?= base_url('files') ?>" class="btn btn-outline-dark px-5 ml-1">Cancel</a>
+
+                    <div class="mt-5">
+                        <div class="form-group float-md-right pl-md-2">
+                            <input type="submit" class="btn btn-dark btn-block px-5" value="Verify" name="file_save">
+                            <!-- <input type="submit"  class="btn btn-dark px-5"> -->
+                        </div>
+                        <div class="form-group float-md-right">
+                            <a href="<?= base_url('files') ?>" class="btn btn-outline-dark btn-block px-5">Cancel</a>
+                        </div>
                     </div>
                 </form>
             </div>

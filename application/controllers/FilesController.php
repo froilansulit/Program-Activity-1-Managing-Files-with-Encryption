@@ -27,8 +27,8 @@
             $this->load->view('partials/footer');
         }
 
-        public function create() {
-
+        public function create() 
+        {
             $this->form_validation->set_rules('encryption_key', 'Encryption Key', 'trim|required|alpha_numeric');
             $this->form_validation->set_rules('confirm_encryption', 'Confirm Encryption Key', 'trim|required|alpha_numeric|matches[encryption_key]');
 
